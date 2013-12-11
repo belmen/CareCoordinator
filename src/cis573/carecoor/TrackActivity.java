@@ -11,15 +11,11 @@ import org.achartengine.GraphicalView;
 import org.achartengine.chart.PointStyle;
 import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
-import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import android.graphics.Color;
-import android.graphics.Paint.Align;
 import android.os.Bundle;
-import android.text.style.BackgroundColorSpan;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
@@ -63,7 +59,7 @@ public class TrackActivity extends BannerActivity {
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.MILLISECOND, 0);
 		Calendar cal2=Calendar.getInstance();
-		cal2.add(Calendar.DAY_OF_YEAR, -31);
+		cal2.add(Calendar.MONTH, -1);
 		cal2.set(Calendar.HOUR, 0);
 		cal2.set(Calendar.MINUTE, 0);
 		cal2.set(Calendar.MILLISECOND, 0);
@@ -102,7 +98,8 @@ public class TrackActivity extends BannerActivity {
 		renderer.setYAxisMin(0);
 		renderer.setYAxisMax(100);
 		renderer.setPanEnabled(true, false);
-		
+		renderer.setZoomEnabled(true, false);
+		renderer.setZoomInLimitX(24 * 60 * 60 * 1000);
 		
 	    renderer.setMargins(new int[] {130, 130,110, 60});
 	    renderer.setMarginsColor(Color.rgb(237, 242, 250));
@@ -127,10 +124,11 @@ public class TrackActivity extends BannerActivity {
 	    renderer.setGridColor(Color.CYAN);
 	    ///////////////////////
 	    renderer.setXLabelsColor(Color.BLACK);
-	    renderer.setYLabelsColor(0,Color.BLACK);
+	    renderer.setYLabelsColor(0, Color.BLACK);
 	    renderer.setXLabels(7);
 	    renderer.setYLabels(6);
-	    renderer.setYLabelsPadding((float)30);
+	    renderer.setYLabelsPadding(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20,
+	    		getResources().getDisplayMetrics()));
 	   /////////////////////////////////
 	    renderer.setShowLegend(false);
 	    

@@ -1,5 +1,7 @@
 package cis573.carecoor;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -161,8 +163,11 @@ public class TakeMedicineActivity extends BannerActivity {
 			List<Time> times = mSchedule.getTimes();
 			List<TakeRecord> records = ScheduleCenter.getDayTakeRecordsForScheduleToday(TakeMedicineActivity.this,
 					mSchedule);
-			if(records != null && records.size() < times.size()) {
-				mNextTime = times.get(records.size());
+			if(records != null) {
+				Collections.sort(records, sorter);
+				if(records.size() < times.size()) {
+					mNextTime = times.get(records.size());
+				}
 			}
 			
 //			int hour;
@@ -225,4 +230,11 @@ public class TakeMedicineActivity extends BannerActivity {
 			}
 		}).show();
 	}
+	
+	private static Comparator<TakeRecord> sorter = new Comparator<TakeRecord>() {
+		@Override
+		public int compare(TakeRecord lhs, TakeRecord rhs) {
+			return lhs.getTakeTime().compareTo(rhs.getTakeTime());
+		}
+	};
 }
