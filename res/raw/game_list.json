@@ -7,4 +7,14 @@
 	"name": "Angry Birds",
 	"pkg_name": ["com.rovio.angrybirds"],
 	"icon": "game_angrybirds"
+},
+{
+	"name": "Dots: A Game About Connecting",
+	"pkg_name": ["com.nerdyoctopus.gamedots"],
+	"icon": "game_dots"
+},
+{
+	"name": "Plants vs. Zombies 2",
+	"pkg_name": ["com.ea.game.pvz2_na"],
+	"icon": "game_pvz"
 }]

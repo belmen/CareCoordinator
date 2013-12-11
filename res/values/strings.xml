@@ -82,6 +82,7 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="back">Back</string>
+    <string name="msg_no_tracking">You don\'t have any tracking schedule</string>
 
     <!-- New Schedule -->
     <string name="title_new_schedule">New Schedule</string>

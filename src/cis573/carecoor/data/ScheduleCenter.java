@@ -2,7 +2,6 @@ package cis573.carecoor.data;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -132,6 +131,19 @@ public class ScheduleCenter {
 		return end.getTime();
 	}
 	
+	public static boolean hasTrackingSchedule(Context context) {
+		List<Schedule> schedules = DataCenter.getSchedules(context);
+		if(schedules == null) {
+			return false;
+		}
+		for(Schedule schedule : schedules) {
+			if(schedule.isTracking()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * Get overall conformity of all tracking schedules
 	 * @param context
@@ -151,6 +163,9 @@ public class ScheduleCenter {
 			if(startDate == null || schedule.getCreateDate().before(startDate)) {
 				startDate = schedule.getCreateDate();
 			}
+		}
+		if(startDate == null) {
+			return null;
 		}
 		Calendar now = Calendar.getInstance(Locale.US);
 		setBeginningOfDay(now);

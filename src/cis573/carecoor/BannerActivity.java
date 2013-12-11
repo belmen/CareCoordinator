@@ -42,9 +42,10 @@ public class BannerActivity extends FragmentActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		if(mTvTitle != null) {
-			mTvTitle.startAnimation(mAnimTitleIn);
-		}
+		Logger.i(TAG, "mTvTitle is " + (mTvTitle == null ? "null" : "not null"));
+//		if(mTvTitle != null) {
+//			mTvTitle.startAnimation(mAnimTitleIn);
+//		}
 	}
 
 	@Override

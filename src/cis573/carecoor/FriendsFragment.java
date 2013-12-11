@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import cis573.carecoor.bean.Friend;
@@ -49,8 +50,8 @@ public class FriendsFragment extends Fragment {
 		if(list == null) {
 			return;
 		}
-		list.add(new Friend("Penn Nursing", "https://www.facebook.com/PennNursing"));
-		list.add(new Friend("Penn Engineering", "https://www.facebook.com/PennEngineering"));
+		list.add(new Friend("Penn Nursing", "https://www.facebook.com/PennNursing", R.drawable.penn_nursing));
+		list.add(new Friend("Penn Engineering", "https://www.facebook.com/PennEngineering", R.drawable.penn_engineering));
 	}
 	
 	OnItemClickListener onItemClick = new OnItemClickListener() {
@@ -115,19 +116,22 @@ public class FriendsFragment extends Fragment {
 			if(convertView == null) {
 				convertView = View.inflate(mContext, R.layout.friends_list_item, null);
 				vh = new ViewHolder();
-				vh.name = (TextView) convertView;
+				vh.icon = (ImageView) convertView.findViewById(R.id.friends_item_icon);
+				vh.name = (TextView) convertView.findViewById(R.id.friends_item_name);
 				convertView.setTag(vh);
 			} else {
 				vh = (ViewHolder) convertView.getTag();
 			}
 			Friend item = (Friend) getItem(position);
 			if(item != null) {
+				vh.icon.setImageResource(item.getIconId());
 				vh.name.setText(item.getName());
 			}
 			return convertView;
 		}
 		
 		private static class ViewHolder {
+			ImageView icon;
 			TextView name;
 		}
 	}
