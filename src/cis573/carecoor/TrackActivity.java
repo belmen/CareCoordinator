@@ -84,16 +84,16 @@ public class TrackActivity extends BannerActivity {
 		weekDataset.addSeries(weekSeries);
 		monthDataset.addSeries(monthSeries);
 		
-		weekGraph = ChartFactory.getTimeChartView(this, weekDataset, getConformityRenderer(),
+		weekGraph = ChartFactory.getTimeChartView(this, weekDataset, getConformityRenderer(weekSeries.getItemCount()),
 				"MM/dd");
 		weekGraph.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
-		monthGraph = ChartFactory.getTimeChartView(this, monthDataset, getConformityRenderer(),
+		monthGraph = ChartFactory.getTimeChartView(this, monthDataset, getConformityRenderer(monthSeries.getItemCount()),
 				"MM/dd");
 		monthGraph.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
 		
 	}
 	
-	private XYMultipleSeriesRenderer getConformityRenderer() {
+	private XYMultipleSeriesRenderer getConformityRenderer(int size) {
 		XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
 		renderer.setYAxisMin(0);
 		renderer.setYAxisMax(100);
@@ -125,7 +125,7 @@ public class TrackActivity extends BannerActivity {
 	    ///////////////////////
 	    renderer.setXLabelsColor(Color.BLACK);
 	    renderer.setYLabelsColor(0, Color.BLACK);
-	    renderer.setXLabels(7);
+	    renderer.setXLabels(size <= 7 ? size : 7);
 	    renderer.setYLabels(6);
 	    renderer.setYLabelsPadding(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20,
 	    		getResources().getDisplayMetrics()));
