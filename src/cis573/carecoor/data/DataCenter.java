@@ -82,20 +82,6 @@ public class DataCenter {
 	
 	public static List<Schedule> getSchedules(Context context) {
 		if(mSchedules == null) {
-			/*Calendar cal=Calendar.getInstance();
-			cal.set(2013, 10, 3,1,1,0);
-			
-			Schedule s=new Schedule(cal.getTime());
-			s.setMedicine(MedicineCenter.getMedicineList(context).get(0));
-			Schedule.Time t=new Schedule.Time(10,45);
-			List<Schedule.Time> tt=new ArrayList<Schedule.Time>();
-			tt.add(t);
-			s.setTimes(tt);
-			s.setDays(null);
-			s.setDuration(50);
-			s.setTracking(true);
-			mSchedules=new ArrayList<Schedule>();
-			mSchedules.add(s);*/
 			mSchedules = (List<Schedule>) FileKit.readObject(context, FILENAME_SCHEDULES);
 		}
 		return mSchedules;
@@ -145,37 +131,8 @@ public class DataCenter {
 	
 	public static List<TakeRecord> getTakeRecords(Context context) {
 		if(mTakeRecords == null) {
-			/*Schedule s=DataCenter.getSchedules(context).get(0);
-			Schedule.Time time=s.getTimes().get(0);
-	
-			Calendar cal=Calendar.getInstance();
-			cal.set(2013,11,4,10,30,0);
-			Date takedate=cal.getTime();
-			cal.set(2013,11,4,time.hour,time.minute,0);
-			Date plan=cal.getTime();
-			TakeRecord take=new TakeRecord(s,takedate,plan);
-			mTakeRecords=new ArrayList<TakeRecord>();
-			mTakeRecords.add(take);
-			
-			cal.set(2013,10,15,10,35,0);
-			takedate=cal.getTime();
-			cal.set(2013,10,15,time.hour,time.minute,0);
-			plan=cal.getTime();
-			take=new TakeRecord(s,takedate,plan);		
-			mTakeRecords.add(take);
-			
-			cal.set(2013,11,6,10,35,0);
-			takedate=cal.getTime();
-			cal.set(2013,11,6,time.hour,time.minute,0);
-			plan=cal.getTime();
-			take=new TakeRecord(s,takedate,plan);		
-			mTakeRecords.add(take);*/
-			
-			
-			//Log.i("mTakeRecord size",new Integer(mTakeRecords.size()).toString());
 			mTakeRecords = (List<TakeRecord>) FileKit.readObject(context, FILENAME_TAKE_RECORD);
 		}
-		
 		return mTakeRecords;
 	}
 	
